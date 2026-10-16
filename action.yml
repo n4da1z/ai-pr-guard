@@ -1,0 +1,17 @@
+name: 'AI PR Guard'
+description: 'Zero-noise PR review auditing AI-generated code for phantom dependencies, leaked secrets, and unvalidated inputs.'
+author: 'Jeff Queiroz'
+
+inputs:
+  github-token:
+    description: 'GitHub token for reading PR diffs and posting review comments'
+    required: true
+    default: ${{ github.token }}
+  fail-on-critical:
+    description: 'Whether the action should fail the workflow if critical vulnerabilities are detected'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'node20'
+  main: 'src/index.js'
