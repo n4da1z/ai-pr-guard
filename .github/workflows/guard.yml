@@ -1,0 +1,20 @@
+name: AI PR Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run AI PR Guard
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
